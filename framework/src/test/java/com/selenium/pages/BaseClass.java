@@ -47,11 +47,11 @@ public class BaseClass {
 		extent.attachReporter(reporter);
 
 	}
-	@Parameters("browser")
+	@Parameters({"browser","url"})
 	@BeforeClass
-	public void setUp(String browser) {
+	public void setUp(String browser,String url) {
 		//driver = BrowserFactory.startApplication(config.getBrowser(), config.getUrl(), driver);
-		driver = BrowserFactory.startApplication(browser, config.getUrl(), driver);
+		driver = BrowserFactory.startApplication(browser, url, driver);
 		System.out.println(driver.getTitle());
 
 	}
