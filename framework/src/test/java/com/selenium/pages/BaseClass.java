@@ -11,6 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -36,6 +37,7 @@ public class BaseClass {
 
 	@BeforeSuite
 	public void setupSuite() {
+		//excel objest created
 		excel = new ExcelDataProvider();
 		config = new ConfigDataProvider();
 
@@ -45,10 +47,11 @@ public class BaseClass {
 		extent.attachReporter(reporter);
 
 	}
-
+	@Parameters("browser")
 	@BeforeClass
-	public void setUp() {
-		driver = BrowserFactory.startApplication(config.getBrowser(), config.getUrl(), driver);
+	public void setUp(String browser) {
+		//driver = BrowserFactory.startApplication(config.getBrowser(), config.getUrl(), driver);
+		driver = BrowserFactory.startApplication(browser, config.getUrl(), driver);
 		System.out.println(driver.getTitle());
 
 	}
